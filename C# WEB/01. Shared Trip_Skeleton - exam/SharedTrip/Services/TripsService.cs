@@ -65,7 +65,12 @@ namespace SharedTrip.Services
             {
                 return false;
             }
-            var trip = dbContext.Trips.FirstOrDefault(x => x.Id == tripId);
+            var trip = dbContext.Trips.Where(x => x.Id == tripId)
+                .Select(x => new
+                {
+                    UserTrips = x.UserTrips,
+                    Seats = x.Seats
+                }).FirstOrDefault();
 
             if (trip == null || trip.Seats - trip.UserTrips.Count() <= 0)
             {

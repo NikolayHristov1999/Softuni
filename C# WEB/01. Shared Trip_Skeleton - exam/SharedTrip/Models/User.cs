@@ -25,6 +25,6 @@ namespace SharedTrip.Models
         [Required]
         public string Password { get; set; }
 
-        public ICollection<UserTrip> UserTrips { get; set; }
+        public virtual ICollection<UserTrip> UserTrips { get; set; }
     }
 }
